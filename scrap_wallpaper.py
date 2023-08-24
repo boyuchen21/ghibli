@@ -8,7 +8,7 @@ def scrap_wallpaper(movie):
     # URL of the HTML page
     url = "https://www.ghibli.jp/works/" + movie + "/"
 
-    output_folder = "wallpaper/" + movie + "/"
+    output_folder = "wallpaper/" + movie
     if not os.path.exists(output_folder):
         os.mkdir(output_folder)
 
@@ -19,14 +19,14 @@ def scrap_wallpaper(movie):
         
         # Find all image links within the "gallery" class
         image_links = soup.select(".gallery .panelarea")
-        image_links
 
         # Download and save each image
-        for idx, img_link in enumerate(image_links, start=1):
+        for img_link in image_links:
             img_url = img_link["href"]
+            title = img_link["title"]
             img_response = requests.get(img_url)
             if img_response.status_code == 200:
-                img_filename = f"image_{idx:03d}.jpg"
+                img_filename = f"{title}.jpg"
                 img_path = os.path.join(output_folder, img_filename)
                 
                 with open(img_path, "wb") as img_file:
