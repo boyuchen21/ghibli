@@ -2,6 +2,7 @@
 import os
 import requests
 from bs4 import BeautifulSoup
+import time
 
 def scrap_wallpaper(movie):
 
@@ -33,9 +34,11 @@ def scrap_wallpaper(movie):
                     img_file.write(img_response.content)
                     
                 print(f"Downloaded {img_filename}")
+                time.sleep(1)
             else:
                 print(f"Failed to download {img_url}")
     else:
         print("Failed to retrieve the HTML content.")
 
     print("Download complete!")
+

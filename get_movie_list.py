@@ -19,3 +19,4 @@ def get_movie_list():
     # Print each link with line breaks
     for link, title in zip(eng_idex_list, titles_list):
         print(f"{title} / {link}")        
+
